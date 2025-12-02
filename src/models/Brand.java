@@ -1,49 +1,57 @@
 package models;
 
-import java.util.Arrays;
+
 
 public class Brand {
-    private Brand[] brands;
-    private String name;
-    private int years;
+    private String brandName;
+    private CarModel[] carModels;
 
-    public Brand(Brand[] brands, String name, int years) {
-        this.brands = brands;
-        this.name = name;
-        this.years = years;
+    public Brand(String brandName, CarModel[] carModels) {
+        this.brandName = brandName;
+        this.carModels = carModels;
     }
 
-    public Brand[] getBrands() {
-        return brands;
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setBrands(Brand[] brands) {
-        this.brands = brands;
+    public CarModel[] getCarModels() {
+        return carModels;
     }
 
-    public String getName() {
-        return name;
+    public void setCarModels(CarModel[] carModels) {
+        this.carModels = carModels;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getYears() {
-        return years;
-    }
-
-    public void setYears(int years) {
-        this.years = years;
-    }
+    
     public int getTotalValidYears() {
-        if()
+        int total = 0;
+
+        for (CarModel model : carModels) {
+            for (CarYear year : model.getYears()) {
+                if (year.isValid()) {
+                    total++;
+                }
+            }
+        }
+
+        return total;
     }
 
     @Override
     public String toString() {
-        return "Brand [brands=" + Arrays.toString(brands) + ", name=" + name + ", years=" + years + "]";
+        return brandName + " - Años válidos: " + getTotalValidYears();
     }
+    
+
+    
+    
+
+    
+
+    
+    
+   
     
 
     
